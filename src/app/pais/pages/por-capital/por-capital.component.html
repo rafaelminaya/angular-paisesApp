@@ -1,0 +1,35 @@
+<h2>Por Capital</h2>
+<hr>
+<!-- Buscador -->
+<div class="row">
+    <div class="col">
+        <!--  
+            - El componente actual "PorPaisComponent" está escuchando los eventos 
+            de este componente hijo "PorPaisComponent".
+            - (onEnter) : Evento emitido por el componente "PaisInputComponent" 
+            - buscar($event) : Método del componente actual "PorPaisComponent" 
+            - (onDebounce) : Evento emitido por el componente "PaisInputComponent" 
+        -->
+
+        <!-- OPCION 1 : Con llaves significa que enviamos una variable cuyo valor está en el archivo TS. -->
+        <!-- <app-pais-input (onEnter)="buscar($event)" [mensajePlaceholder]="mensajeFondo"></app-pais-input> -->
+
+        <!-- OPCION 2 : Sin llaves significa que enviamos un "string" en duro. -->
+        <app-pais-input (onEnter)="buscar($event)" mensajePlaceholder="Buscar capital.."></app-pais-input>
+
+    </div>
+</div>
+
+<hr>
+
+<!-- Mensaje de error -->
+<div *ngIf="hayError" class="alert alert-danger">
+    No se encontró nada con el término {{termino}}
+</div>
+
+<!-- Mensaje de éxito -->
+<div *ngIf="paises.length > 0" class="row">
+    <div class="col">
+        <app-pais-tabla [paises]="paises"></app-pais-tabla>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+<h2>Búsquedas</h2>
+<hr>
+<ul class="list-group">
+    <!-- 
+                - routerLink : 
+                Atributo brindao por el "RouterModule", 
+                Debemos indicar el "path" del "AppRoutingModule" para redireccionar.
+                - routerLinkActive="active" : 
+                Añade un "class", con el valor dado, al elemento html si la ruta está activada.
+                - [routerLinkActiveOptions]="{exact: true}" 
+                Usado por lo general cuando el "path" es vacio. 
+                Para que no agregue la clase "active" en otro "path" que no sea la ruta exacta en donde me encuentre.
+                Ya que las rutas en general digamos teclean cada palabra, incluyendo la ruta vacia, por tal motivo se añadiría el "active" a dichas rutas con palabras.
+                Especifica que el "routerLinkActive" haga su trabajo, solo si la ruta es específicamente la indicada.
+            -->
+    <!-- http://localhost:4200/ -->
+    <!--  [routerLinkActiveOptions]="{exact: true}" -->
+    <li routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="list-group-item">Buscar
+        país</li>
+    <!-- http://localhost:4200/region -->
+    <li routerLink="region" routerLinkActive="active" class="list-group-item">Buscar región</li>
+    <!-- http://localhost:4200/capital -->
+    <li routerLink="capital" routerLinkActive="active" class="list-group-item">Buscar capital</li>
+</ul>

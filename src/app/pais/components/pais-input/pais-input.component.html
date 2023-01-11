@@ -1,0 +1,5 @@
+<!-- autocomplete="off" : Permite evitar las sugerencias de búsqueda propias del navegador -->
+<form (ngSubmit)="buscar()" autocomplete="off">
+    <input type="text" name="termino" class="form-control" [(ngModel)]="termino" (input)="teclaPresionada()"
+        [placeholder]="mensajePlaceholder">
+</form>
