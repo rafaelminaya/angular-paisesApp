@@ -10,6 +10,7 @@ import { debounceTime, Subject } from 'rxjs';
 OnInit : Ciclo de vida de un componente que necesita implementar el método "ngOnInit()"
 */
 export class PaisInputComponent implements OnInit {
+  // ATRIBUTOS
   @Input()
   mensajePlaceholder: string = '';
 
@@ -30,7 +31,9 @@ export class PaisInputComponent implements OnInit {
 
   termino: string = '';
 
-  // MÉTODO ngOnInit - Se dispara una única vez cuando el componente es creado
+  // MÉTODOS
+
+  // ngOnInit - Se dispara una única vez cuando el componente es creado
   ngOnInit(): void {
     /* 
      - Me suscribo a los eventos del Observable "debouncer".

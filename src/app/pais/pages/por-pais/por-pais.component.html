@@ -1,21 +1,37 @@
-<h2>Por País</h2>
-<hr>
-<!-- Buscador -->
-<div class="row">
-    <div class="col">
-        <!--  
+<!-- animación del "https://animate.style/" -->
+<div class="animate__animated animate__fadeIn animate__faster">
+    <h2>Por País</h2>
+    <hr>
+    <!-- Buscador -->
+    <div class="row">
+        <div class="col">
+            <!--  
             - El componente actual "PorPaisComponent" está escuchando los eventos 
             de este componente hijo "PorPaisComponent".
             - (onEnter) : Evento emitido por el componente "PaisInputComponent" 
             - buscar($event) : Método del componente actual "PorPaisComponent" 
             - (onDebounce) : Evento emitido por el componente "PaisInputComponent" 
         -->
-        <app-pais-input (onEnter)="buscar($event)" (onDebounce)="sugerencias($event)"
-            mensajePlaceholder="Buscar país..."></app-pais-input>
+            <app-pais-input (onEnter)="buscar($event)" (onDebounce)="sugerencias($event)"
+                mensajePlaceholder="Buscar país..."></app-pais-input>
+        </div>
     </div>
+    <!-- Es similar a decir: "mostarSugerencias == true"  -->
+    <ul *ngIf="mostarSugerencias" class="list-group">
+        <!-- list-group-item-action : Estilo de bootstrap para aplicar un hover -->
+        <li *ngFor="let pais of paisesSugeridos" class="list-group-item list-group-item-action">
+            <!-- nav-link : Cambia el diseño de los "<a>" quitándole el subrayado -->
+            <a class="nav-link" [routerLink]="['/pais', pais.alpha2Code]">{{pais.name}}</a>
+        </li>
+
+        <li class="list-group-item list-group-item-action" (click)="buscarSugerido(termino)">
+            <!-- nav-link : Cambia el diseño de los "<a>" quitándole el subrayado -->
+            <a class="nav-link">Buscar '{{termino}}'</a>
+        </li>
+    </ul>
+    <hr>
 </div>
 
-<hr>
 
 <!-- Mensaje de error -->
 <div *ngIf="hayError" class="alert alert-danger">

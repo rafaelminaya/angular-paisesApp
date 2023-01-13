@@ -23,7 +23,7 @@ const routes: Routes = [
   },
   // :codigoPais : Indica que este bloque de la URL será dinámica, y "id" es el nombre del argumento
   {
-    path: 'pais/:id', // http://localhost:4200/pais/1
+    path: 'pais/:id', // http://localhost:4200/pais/PE
     component: VerPaisComponent,
   },
 

@@ -10,13 +10,18 @@ import { Country } from '../../interfaces/pais.interface';
   styles: [],
 })
 export class VerPaisComponent implements OnInit {
+  // ATRIBUTOS
   pais!: Country;
+
+  // CONSTRUCTOR
 
   // ActivatedRoute : Viene con todo lo necesario para suscribirnos a cualqiuer cambio en la URL del componente actual.
   constructor(
     private activatedRoute: ActivatedRoute,
     private paisService: PaisService
   ) {}
+
+  // MÉTODOS
 
   // El ngOnInit() realiza una labor cuando el componente está inicializado
   // o también conocido como "a penas carga la página".
@@ -46,6 +51,7 @@ export class VerPaisComponent implements OnInit {
     */
     this.activatedRoute.params
       .pipe(
+        tap((response) => console.log(response)),
         switchMap((urlParam) => {
           return this.paisService.getPaisPorCodigo(urlParam['id']);
         }),

@@ -1,9 +1,11 @@
-<h2>Por Capital</h2>
-<hr>
-<!-- Buscador -->
-<div class="row">
-    <div class="col">
-        <!--  
+<!-- animación del "https://animate.style/" -->
+<div class="animate__animated animate__fadeIn animate__faster">
+    <h2>Por Capital</h2>
+    <hr>
+    <!-- Buscador -->
+    <div class="row">
+        <div class="col">
+            <!--  
             - El componente actual "PorPaisComponent" está escuchando los eventos 
             de este componente hijo "PorPaisComponent".
             - (onEnter) : Evento emitido por el componente "PaisInputComponent" 
@@ -11,16 +13,17 @@
             - (onDebounce) : Evento emitido por el componente "PaisInputComponent" 
         -->
 
-        <!-- OPCION 1 : Con llaves significa que enviamos una variable cuyo valor está en el archivo TS. -->
-        <!-- <app-pais-input (onEnter)="buscar($event)" [mensajePlaceholder]="mensajeFondo"></app-pais-input> -->
+            <!-- OPCION 1 : Con llaves significa que enviamos una variable cuyo valor está en el archivo TS. -->
+            <!-- <app-pais-input (onEnter)="buscar($event)" [mensajePlaceholder]="mensajeFondo"></app-pais-input> -->
 
-        <!-- OPCION 2 : Sin llaves significa que enviamos un "string" en duro. -->
-        <app-pais-input (onEnter)="buscar($event)" mensajePlaceholder="Buscar capital.."></app-pais-input>
+            <!-- OPCION 2 : Sin llaves significa que enviamos un "string" en duro. -->
+            <app-pais-input (onEnter)="buscar($event)" mensajePlaceholder="Buscar capital.."></app-pais-input>
 
+        </div>
     </div>
+    <hr>
 </div>
 
-<hr>
 
 <!-- Mensaje de error -->
 <div *ngIf="hayError" class="alert alert-danger">

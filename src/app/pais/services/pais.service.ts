@@ -1,16 +1,29 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { Country } from '../interfaces/pais.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PaisService {
+  // ATRIBUTOS
   private apiUrl: string = 'https://restcountries.com/v2';
 
+  // GETTER
+  get httpParams() {
+    // HttpParams : Objeto que permite configurar los parámetros en una petición HTTP.
+    // set() : Envíamos los parámetros por medio de un "key/value"
+    return new HttpParams().set(
+      'fields',
+      'name,capital,alpha2Code,flag,population'
+    );
+  }
+
+  // CONSTRUCTOR
   constructor(private httpClient: HttpClient) {}
 
+  // MÉTODOS
   /*
   Indicamos que devolverá un tipo "Observable", ya que ese es el tipo que retorna la función "get(url)"
   */
@@ -28,18 +41,28 @@ export class PaisService {
     */
     // return this.httpClient.get(url).pipe(catchError((err) => of([])));
     // Al añadir el genérico  "get<Country[]>", podríamos prescindir del "Observable<Country[]>" en la firma del método
-    return this.httpClient.get<Country[]>(url);
+    return this.httpClient.get<Country[]>(url, { params: this.httpParams });
   }
 
   buscarCapital(termino: string): Observable<Country[]> {
     const url = `${this.apiUrl}/capital/${termino}`;
 
-    return this.httpClient.get<Country[]>(url);
+    return this.httpClient.get<Country[]>(url, { params: this.httpParams });
   }
 
   getPaisPorCodigo(id: string): Observable<Country> {
     const url = `${this.apiUrl}/alpha/${id}`;
 
     return this.httpClient.get<Country>(url);
+  }
+
+  buscarRegion(region: string): Observable<Country[]> {
+    // const url = `${this.apiUrl}/region/${region}?fields=name,capital,alpha2Code,flag,population`;
+    const url = `${this.apiUrl}/region/${region}`;
+
+    // Añadimos los parámetros a la petición http
+    return this.httpClient
+      .get<Country[]>(url, { params: this.httpParams })
+      .pipe(tap(console.log));
   }
 }

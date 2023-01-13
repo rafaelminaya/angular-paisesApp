@@ -1,2 +1,32 @@
-<h2>Por Región</h2>
-<hr>
+<!-- animación del "https://animate.style/" -->
+<div class="animate__animated animate__fadeIn animate__faster">
+    <h3>Buscar por region <small> {{ regionActiva | titlecase }} </small></h3>
+    <hr>
+
+    <h5>Seleccione la region</h5>
+
+    <div class="row">
+        <div class="col">
+            <!-- [class.btn-primary]="region === regionActiva" -->
+            <!-- "activarRegion(region)" : Envío la region que se está iterando en el "ngFor" -->
+            <!--  [ngClass]="{
+            'btn-primary': regionActiva === region,
+            'btn-outline-primary': regionActiva !== region            
+        }" -->
+            <!-- [class] : Añade una clase css según la expresión JS o propiedad del componente TS. -->
+
+            <!-- <button (click)="activarRegion(region)" *ngFor="let region of regiones"
+            [class]="(region === regionActiva) ? 'btn btn-primary' : 'btn btn-outline-primary'">
+            {{region}} </button> -->
+
+            <button (click)="activarRegion(region)" *ngFor="let region of regiones" [class]="getClaseCSS(region)">
+                {{region | titlecase}} </button>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="paises.length > 0" class="row">
+    <div class="col">
+        <app-pais-tabla [paises]="paises"></app-pais-tabla>
+    </div>
+</div>
